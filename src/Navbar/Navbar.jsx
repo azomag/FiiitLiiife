@@ -43,7 +43,7 @@ export default function Navbar() {
       icon: <ChevronDown size={16} />,
       dropdown: [
         { label: "Programmes", path: "/programmes", icon: <NotepadText size={20} /> },
-        { label: "Workouts", path: "/workouts", icon: <Dumbbell size={20} /> },
+        { label: "Workouts", path: "/workout", icon: <Dumbbell size={20} /> },
         { label: "Personal Training", path: "/personal-trainer", icon: <User size={20} /> }
       ]
     },

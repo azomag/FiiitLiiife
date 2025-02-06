@@ -720,7 +720,7 @@ const DetailsProgrammes = () => {
           <h1 className="text-4xl text-[#faa307] font-bold">Program Not Found</h1>
           <p className="text-gray-400">The program you’re looking for doesn’t exist.</p>
           <button 
-            onClick={() => navigate('/programs')}
+            onClick={() => navigate('/programmes')}
             className="bg-[#faa307] text-black px-6 py-3 rounded-lg hover:bg-[#faa307]/90 transition-all duration-300 flex items-center mx-auto"
           >
             <ArrowLeft className="mr-2" size={20} />
@@ -740,7 +740,7 @@ const DetailsProgrammes = () => {
             <span className="text-[#faa307]">Program</span>
           </h1>
           <button 
-            onClick={() => navigate('/programs')} 
+            onClick={() => navigate('/programmes')} 
             className="flex items-center text-gray-400 hover:text-white transition-colors"
           >
             <ArrowLeft className="mr-2" />
@@ -749,9 +749,9 @@ const DetailsProgrammes = () => {
         </div>
 
         <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
-          <div className="grid md:grid-cols-3 gap-8 p-8">
+          <div className="grid place-content-center md:grid-cols-3 gap-8 p-8">
             {/* Sidebar */}
-            <div className="md:col-span-1 bg-white/5 rounded-2xl p-8 border border-white/10 transition-all duration-300 hover:border-[#faa307]/30">
+            <div className="md:col-span-1 lg:m-0 m-6 bg-white/5 rounded-2xl p-8 border border-white/10 transition-all duration-300 hover:border-[#faa307]/30">
               <div className="text-6xl text-center mb-8 animate-bounce">{program.icon}</div>
               <h1 className="text-3xl font-bold text-[#faa307] text-center mb-4">{program.title}</h1>
               <p className="text-gray-400 text-center mb-8">{program.description}</p>
@@ -764,8 +764,8 @@ const DetailsProgrammes = () => {
             </div>
 
             {/* Main Content */}
-            <div className="md:col-span-2 space-y-8">
-              <div className="flex border-b border-gray-700">
+            <div className="md:col-span-2  space-y-8">
+              <div className="flex border-b  border-gray-700">
                 {['overview', 'includes', 'benefits'].map((tab) => (
                   <TabButton
                     key={tab}

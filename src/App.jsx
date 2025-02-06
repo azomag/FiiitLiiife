@@ -1,32 +1,24 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 import Navbar from './Navbar/Navbar';
 import Home from './pages/Home';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import AboutPrograms from './pages/AboutPrograms';
-import Workout from './pages/Workout';
-import PersonalTrainer from './pages/PersonalTrainer';
+import SignUp from "./pages/SignUp";
 import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Programmes from './pages/Programmes';
+import DetailsProgrammes from './pages/DetailsProgrammes';
 
 function App() {
-  return (
+  return ( 
     <Router>
       <div className='app'>
         <Navbar />
-        <main className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about-programs" element={<AboutPrograms />} />
-            <Route path="/workout" element={<Workout />} />
-            <Route path="/personal-trainer" element={<PersonalTrainer />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/programmes" element={<Programmes />} />
+          <Route path="/program/:id" element={<DetailsProgrammes />} />
+        </Routes>
       </div>
     </Router>
   );

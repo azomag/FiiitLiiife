@@ -9,7 +9,8 @@ import DetailsProgrammes from './pages/DetailsProgrammes';
 import Footer from './Footer/Footer';
 import Workout from './pages/Workout';
 import WorkoutDetails from './pages/WorkoutDetails'; // Import WorkoutDetails component
-
+import PersonalTrainer from './pages/PersonalTrainer';
+import PersonalTrainerDetails from './pages/PersonalTrainerDetails'; // Import PersonalTrainerDetails
 function App() {
   return ( 
     <Router>
@@ -23,6 +24,8 @@ function App() {
           <Route path="/program/:id" element={<DetailsProgrammes />} />
           <Route path="/workout" element={<Workout />} />
           <Route path="/WorkoutDetails/:id" element={<WorkoutDetails />} /> {/* ✅ Fix added */}
+        <Route path='/PersonalTrainer' element={<PersonalTrainer />} />
+        <Route path="/PersonalTrainerDetails/:id" element={<PersonalTrainerDetails />} />    
         </Routes>
         <Footer />
       </div>

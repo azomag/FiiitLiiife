@@ -8,7 +8,7 @@ export default function Programmes() {
   const [selectedIntensity, setSelectedIntensity] = useState('All');
   const [selectedDuration, setSelectedDuration] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-
+// created by @mohamed azoumag and @zaimi ayman 
   const programs = [
     {
         "id": 1,

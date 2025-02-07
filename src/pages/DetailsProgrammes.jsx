@@ -11,7 +11,7 @@ import {
   ArrowLeft,
   Play
 } from 'lucide-react';
-
+// created by @mohamed azoumag and @zaimi ayman 
 const programsData = {
   1: {
     id: 1,

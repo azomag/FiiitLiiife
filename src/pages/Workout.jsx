@@ -46,7 +46,7 @@ const SearchBar = ({ value, onChange }) => (
       placeholder="Search workouts..."
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full pl-10 pr-4 py-2 bg-white/10 border border-[#faa307] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#faa307] focus:border-transparent placeholder-gray-500 transition-all"
+      className="w-full pl-10 pr-4 py-2 bg-white/10 border text-white border-[#faa307] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#faa307] focus:border-transparent placeholder-gray-500 transition-all"
     />
   </div>
 );
@@ -54,14 +54,14 @@ const SearchBar = ({ value, onChange }) => (
 const FilterButtons = ({ selectedFilter, onFilterChange }) => {
   const filters = ["All", "Beginner", "Intermediate", "Advanced"];
   return (
-    <div className="flex items-center gap-4">
-      <Filter size={20} className="text-[#faa307]" />
+    <div className="flex items-center gap-4 ">
+      <Filter size={20} className="text-[#faa307] lg:flex hidden" />
       <div className="flex gap-2 p-1 bg-white/10 rounded-lg">
         {filters.map((filter) => (
           <button
             key={filter}
             onClick={() => onFilterChange(filter)}
-            className={`px-4 py-2 rounded-md transition-colors ${
+            className={`lg:px-4 lg:py-2 py-2 px-2 text-sm rounded-md transition-colors ${
               selectedFilter === filter
                 ? "bg-[#faa307] text-white"
                 : "text-gray-300 hover:bg-white/10"
@@ -161,7 +161,7 @@ export default function Workout() {
   return (
     <div className="min-h-screen bg-black py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-12">
+        <div className="flex flex-col sm:flex-row items-center  justify-between gap-6 mb-12">
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
           <FilterButtons selectedFilter={difficultyFilter} onFilterChange={setDifficultyFilter} />
         </div>

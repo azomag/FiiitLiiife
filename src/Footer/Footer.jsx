@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-black px-7 lg:px-0">
       <div className="mx-auto max-w-screen-xl pt-10 pb-6 sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex justify-center text-[#faa307] sm:justify-start">
-            <h1 className="text-2xl font-bold">FitLife</h1>
+            <h1 className="text-2xl uppercase font-bold">FiitLife</h1>
           </div>
 
          
@@ -121,10 +121,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 border-t-2 flex flex-col border-[#faa307] pt-6 sm:flex sm:items-center sm:justify-between">
-          <p className=" text-sm text-gray-300 sm:text-left">
-            <span className='text-[#faa307]'>Copyright  </span>; 2025. All rights reserved.
-          
+          <p className=" text-sm text-gray-300 text-center lg:text-left">
+            <span className='text-[#faa307]'>Copyright  </span> 2025. All rights reserved.
           </p>
+          
         </div>
       </div>
     </footer>

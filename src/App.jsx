@@ -11,6 +11,9 @@ import Workout from './pages/Workout';
 import WorkoutDetails from './pages/WorkoutDetails'; // Import WorkoutDetails component
 import PersonalTrainer from './pages/PersonalTrainer';
 import PersonalTrainerDetails from './pages/PersonalTrainerDetails'; // Import PersonalTrainerDetails
+import ChatBot from './chat/Chatbot';
+import About from './pages/About';
+import Shop from './pages/Shop';
 function App() {
   return ( 
     <Router>
@@ -26,7 +29,11 @@ function App() {
           <Route path="/WorkoutDetails/:id" element={<WorkoutDetails />} /> {/* ✅ Fix added */}
         <Route path='/PersonalTrainer' element={<PersonalTrainer />} />
         <Route path="/PersonalTrainerDetails/:id" element={<PersonalTrainerDetails />} />    
+        <Route path="/about" element={<About />} />
+        <Route path="/Shop" element={<Shop />} />
         </Routes>
+
+        <ChatBot />
         <Footer />
       </div>
     </Router>

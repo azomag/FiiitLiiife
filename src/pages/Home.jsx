@@ -34,7 +34,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="relative lg:pt-0  min-h-screen w-full overflow-hidden bg-gray-900 pt-24">
+    <section className="relative lg:pt-0  min-h-screen w-full overflow-hidden  pt-24">
       {/* Background Image with Optimized Loading */}
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-full">
@@ -42,7 +42,7 @@ export default function Home() {
             src={img}
             alt=""
             className="h-full w-full object-cover object-top"
-            loading="eager"
+            loading="lazy"
             priority="true"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />

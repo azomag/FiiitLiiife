@@ -118,7 +118,7 @@ const PersonalTrainer = () => {
   return (
     <div className="w-full min-h-screen bg-black py-40 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-6xl font-bold text-white text-center mb-12 flex justify-center gap-3">Our Expert <p className="text-[#faa307]">Trainers</p></h1>
+        <h1 className="text-4xl font-bold text-white text-center mb-12 flex justify-center gap-3">Our Expert <p className="text-[#faa307]">Trainers</p></h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {trainers.map((trainer) => (
              <Link

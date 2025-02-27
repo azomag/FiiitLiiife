@@ -14,6 +14,7 @@ import PersonalTrainerDetails from './pages/PersonalTrainerDetails'; // Import P
 import ChatBot from './chat/Chatbot';
 import About from './pages/About';
 import Shop from './pages/Shop';
+import Contact from './pages/Contact';
 function App() {
   return ( 
     <Router>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/PersonalTrainerDetails/:id" element={<PersonalTrainerDetails />} />    
         <Route path="/about" element={<About />} />
         <Route path="/Shop" element={<Shop />} />
+        <Route path="/contact" element={<Contact />} />
         </Routes>
 
         <ChatBot />

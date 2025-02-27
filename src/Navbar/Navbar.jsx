@@ -211,7 +211,7 @@ export default function Navbar() {
     <nav 
       className={`
         fixed top-0 left-0 w-full z-[9999] transition-all duration-300 bg-black/70 backdrop-blur-md
-        ${isScrolled ? "shadow-md border-b border-white/10" : ""}
+        ${isScrolled ? "shadow-md" : ""}
       `}
       role="navigation"
       aria-label="Main navigation"

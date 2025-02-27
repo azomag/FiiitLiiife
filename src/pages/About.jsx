@@ -1,272 +1,240 @@
-/* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-   Dumbbell, 
- Users2, BarChart3,  ArrowRight, 
-  CheckCircle,  Phone, Globe, Shield, Zap, 
-  Brain, Apple, Calendar, Video 
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Users, Award, Dumbbell, HeartPulse, ChevronRight } from 'lucide-react';
+import {Link} from "react-router-dom"
 
-// Reusable Animated Component
-const SlideIn = ({ children, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay }}
-  >
-    {children}
-  </motion.div>
-);
-
-// Feature Card Component
-const FeatureCard = ({ feature, isActive, onClick }) => (
-  <motion.div
-    className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-      isActive 
-        ? 'bg-[#faa307] text-black'
-        : 'border-2 border-[#faa307] hover:bg-[#faa307]/20'
-    }`}
-    onClick={onClick}
-    whileHover={{ scale: 1.02 }}
-  >
-    <div className="flex items-center gap-4">
-      <feature.icon className="w-6 h-6 flex-shrink-0" />
-      <h4 className="text-xl font-bold">{feature.title}</h4>
-    </div>
-    <AnimatePresence>
-      {isActive && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="mt-4 space-y-2"
-        >
-          <p>{feature.description}</p>
-          <ul className="mt-4 space-y-2">
-            {feature.details.map((detail, index) => (
-              <motion.li 
-                key={index}
-                className="flex items-center gap-2"
-                initial={{ x: -20 }}
-                animate={{ x: 0 }}
-              >
-                <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                <span>{detail}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </motion.div>
-);
-
-// Benefit Card Component
-const BenefitCard = ({ benefit }) => (
-  <motion.div 
-    className="border-2 border-[#faa307] rounded-xl p-6 hover:bg-[#faa307]/10 transition-all duration-300 group"
-    whileHover={{ y: -5 }}
-  >
-    <div className="flex items-center gap-4 mb-4">
-      <div className="p-3 bg-[#faa307]/20 rounded-lg group-hover:bg-[#faa307]/30 transition-colors">
-        <benefit.icon className="w-6 h-6 text-[#faa307]" />
-      </div>
-      <h4 className="text-xl font-bold">{benefit.title}</h4>
-    </div>
-    <p className="text-gray-300 group-hover:text-white">{benefit.description}</p>
-  </motion.div>
-);
-
-const PlatformDescription = () => {
-  const [activeFeature, setActiveFeature] = useState('training');
-
-  const platformFeatures = {
-    training: {
-      icon: Dumbbell,
-      title: "Intelligent Training System",
-      description: "Our AI-powered training system adapts to your progress, goals, and preferences in real-time.",
-      details: [
-        "Dynamic workout adjustments based on performance",
-        "Real-time form correction with computer vision",
-        "Personalized progression algorithms",
-        "Custom workout plan generation"
-      ]
+export default function About() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
     },
-    nutrition: {
-      icon: Apple,
-      title: "Smart Nutrition Planning",
-      description: "Comprehensive nutrition tracking and meal planning tailored to your fitness goals.",
-      details: [
-        "AI-powered meal recommendations",
-        "Macro and micronutrient tracking",
-        "Restaurant menu guidance",
-        "Hydration monitoring"
-      ]
-    },
-    community: {
-      icon: Users2,
-      title: "Community Engagement",
-      description: "Connect, compete, and celebrate with a global community of fitness enthusiasts.",
-      details: [
-        "Global fitness challenges",
-        "Social progress sharing",
-        "Virtual training groups",
-        "Community achievements"
-      ]
-    },
-    coaching: {
-      icon: Brain,
-      title: "Expert Coaching",
-      description: "Access to world-class trainers and specialists for personalized guidance.",
-      details: [
-        "1-on-1 virtual coaching",
-        "Expert video libraries",
-        "Live technique reviews",
-        "Specialized programs"
-      ]
-    }
   };
 
-  const benefits = [
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const stats = [
+    { icon: <Users className="h-8 w-8" aria-hidden="true" />, value: '15+ Years', label: 'Experience' },
+    { icon: <Award className="h-8 w-8" aria-hidden="true" />, value: '200+', label: 'Certified Trainers' },
+    { icon: <HeartPulse className="h-8 w-8" aria-hidden="true" />, value: '1M+', label: 'Happy Clients' },
+    { icon: <Dumbbell className="h-8 w-8" aria-hidden="true" />, value: '500+', label: 'Programs' },
+  ];
+
+  const coreValues = [
+    { title: 'Integrity', description: 'Ethical practices and transparency in all our interactions' },
+    { title: 'Innovation', description: 'Continual evolution through fitness research and technology' },
+    { title: 'Community', description: 'Building supportive networks for lifelong success' },
+  ];
+
+  const testimonials = [
     {
-      icon: Calendar,
-      title: "Flexible Scheduling",
-      description: "Book classes, schedule personal training, and manage your fitness calendar with ease."
+      name: 'Mohammed',
+      role: 'Fitness Enthusiast',
+      quote: 'FiitLiife transformed my life! The trainers are amazing, and the community is so supportive.',
     },
     {
-      icon: Video,
-      title: "Virtual Training",
-      description: "Access hundreds of on-demand workouts and live streaming sessions from anywhere."
+      name: 'Aymane ',
+      role: 'Marathon Runner',
+      quote: 'The programs are top-notch. I’ve never felt stronger or more confident!',
     },
     {
-      icon: BarChart3,
-      title: "Progress Tracking",
-      description: "Comprehensive analytics and progress visualization to keep you motivated."
-    }
+      name: 'Youssra',
+      role: 'Yoga Practitioner',
+      quote: 'The holistic approach at FiitLiife helped me achieve balance in both body and mind.',
+    },
+  ];
+
+  const certifications = [
+    { 
+      src: 'https://www.yoancoaching.com/wp-content/uploads/2015/06/26736020_10215388645528617_1783583913_o-e1515524899477.jpg', 
+      alt: 'Certificat de Coach Sportif' 
+    },
+    { 
+      src: 'https://elearningformalis.fr/wp-content/uploads/2022/10/Certificat_Coach-Sportif_site-xs.jpg', 
+      alt: 'Certification d\'Entraînement Personnel' 
+    },
+    { 
+      src: 'https://www.mon-diplome.fr/Diplome/700-566356-Diplome-du-baccalaureat--du-meilleur-coach-sportif.jpg', 
+      alt: 'Diplôme du baccalaureat Sportive' 
+    },
+    { 
+      src: 'https://www.mon-diplome.fr/Diplome/700-997083-Diplome-du-meilleur-coach-sportif.jpg', 
+      alt: 'Diplôme Coach Sportive' 
+    },
   ];
 
   return (
-    <div className="py-24 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#faa307]/5 to-transparent" />
-      
-      <div className="container mx-auto px-6 relative">
-        <SlideIn delay={0.2}>
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-[#faa307] to-amber-200 bg-clip-text text-transparent">
-              The Complete Fitness Platform
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Experience the future of fitness with our comprehensive digital ecosystem designed to transform every aspect of your wellness journey.
-            </p>
-          </div>
-        </SlideIn>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-          <SlideIn delay={0.4}>
-            <div className="relative h-[600px] w-full rounded-2xl overflow-hidden border-2 border-[#faa307]/30">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#faa307]/10 to-transparent" />
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                className="w-full h-full object-cover"
-                poster="/assets/platform-preview.jpg"
-              >
-                <source src="https://videocdn.cdnpk.net/videos/1bb2747a-84e3-5763-b57d-d5496b6012d2/vertical/previews/clear/large.mp4?token=exp=1739107530~hmac=75788c9314c1c6ca78bac6026ab3c22b353160c3f595adbc9d6818f4ad9ce9b5" type="video/mp4" />
-              </video>
-            </div>
-          </SlideIn>
-
-          <SlideIn delay={0.6}>
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-3xl font-bold">
-                  Revolutionary <span className="text-[#faa307]">AI-Powered</span> Technology
-                </h3>
-                <p className="text-lg text-gray-300">
-                  FiitLife combines cutting-edge artificial intelligence with expert fitness knowledge to deliver a truly personalized fitness experience. Our platform learns from your performance, adapts to your needs, and guides you toward your goals with unprecedented precision.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Shield, text: "Privacy-First Design" },
-                  { icon: Zap, text: "Real-Time Analytics" },
-                  { icon: Globe, text: "Available Worldwide" },
-                  { icon: Phone, text: "Cross-Platform Support" }
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="flex items-center gap-3 text-gray-300 hover:text-white"
-                    whileHover={{ x: 5 }}
-                  >
-                    <item.icon className="w-5 h-5 text-[#faa307] flex-shrink-0" />
-                    <span>{item.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </SlideIn>
+    <section className="relative py-40 min-h-screen w-full overflow-hidden bg-gray-900">
+      {/* Background Image with Animated Gradient */}
+      <div className="absolute inset-0 z-0">
+        <div className="relative h-full w-full bg-black">
+          
+          <div className="absolute inset-0 " />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-[#faa307]/10 via-orange-500/10 to-[#ffc42d]/10"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-          <SlideIn delay={0.4}>
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold">
-                Core Platform <span className="text-[#faa307]">Features</span>
-              </h3>
-              
-              <div className="space-y-4">
-                {Object.entries(platformFeatures).map(([key, feature]) => (
-                  <FeatureCard
-                    key={key}
-                    feature={feature}
-                    isActive={activeFeature === key}
-                    onClick={() => setActiveFeature(key)}
-                  />
-                ))}
-              </div>
-            </div>
-          </SlideIn>
-
-          <SlideIn delay={0.6}>
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold">
-                Additional <span className="text-[#faa307]">Benefits</span>
-              </h3>
-
-              <div className="space-y-6">
-                {benefits.map((benefit, index) => (
-                  <BenefitCard key={index} benefit={benefit} />
-                ))}
-              </div>
-            </div>
-          </SlideIn>
-        </div>
-
-        <SlideIn delay={0.8}>
-          <div className="text-center">
-            <motion.button 
-              className="bg-gradient-to-r from-[#faa307] to-amber-500 text-black px-12 py-4 rounded-full font-bold text-xl hover:shadow-xl hover:shadow-[#faa307]/30 transition-all inline-flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Your Journey <ArrowRight className="w-6 h-6" />
-            </motion.button>
-          </div>
-        </SlideIn>
       </div>
-    </div>
-  );
-};
 
-const AboutPage = () => {
-  return (
-    <div className="bg-black min-h-screen text-white">
-      <PlatformDescription />
-    </div>
-  );
-};
+      {/* Main Content */}
+      <motion.div 
+        className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="max-w-4xl">
+          {/* Tagline */}
+          <motion.div 
+            variants={itemVariants}
+            className="mb-6 inline-block rounded-full bg-[#faa307]/20 px-4 py-2 text-sm font-semibold text-orange-400"
+          >
+            Since 2008, Transforming Lives
+          </motion.div>
 
-export default AboutPage;
+          {/* Heading */}
+          <motion.h1 
+            variants={itemVariants}
+            className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            More Than Just a{' '}
+            <span className="relative">
+              <span className="relative z-10 bg-gradient-to-r from-[#faa307] via-orange-500 to-[#ffc42d] bg-clip-text text-transparent">
+                Gym
+              </span>
+              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-orange-400/20 via-orange-500/20 to-red-600/20 blur-lg" />
+            </span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p 
+            variants={itemVariants}
+            className="mt-6 text-lg leading-8 text-gray-300 sm:text-xl"
+          >
+            At FiitLife, we’ve been redefining fitness excellence for over a decade. What started as a small training studio has grown into a global movement dedicated to holistic wellness. Our philosophy centers on sustainable transformation through science-backed methods and compassionate coaching.
+          </motion.p>
+
+          {/* Mission and Promise */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-12 grid gap-8 sm:grid-cols-2"
+          >
+            <div>
+              <h3 className="text-2xl font-semibold text-white">Our Mission</h3>
+              <p className="mt-4 text-gray-300">
+                To empower every individual to discover their strength, both physical and mental, through personalized fitness journeys and a supportive global community.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold text-white">Our Promise</h3>
+              <p className="mt-4 text-gray-300">
+                Cutting-edge facilities, world-class trainers, and innovative programs that adapt to your evolving fitness needs at every life stage.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Stats Grid */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4"
+          >
+            {stats.map((stat, index) => (
+              <motion.div 
+                key={index}
+                className="group relative rounded-2xl bg-white/5 p-6 backdrop-blur-lg transition-all hover:bg-[#faa307]/10"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="absolute inset-0 rounded-2xl border border-white/10 transition-colors group-hover:border-orange-400/30" />
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4 text-[#faa307]">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl font-bold text-white">{stat.value}</div>
+                  <div className="mt-1 text-sm text-gray-400">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Core Values */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 border-t border-white/10 pt-12"
+          >
+            <h2 className="text-3xl font-bold text-white">Core Values</h2>
+            <div className="mt-8 grid gap-8 md:grid-cols-3">
+              {coreValues.map((value, index) => (
+                <div key={index} className="rounded-xl p-6 transition-all hover:bg-white/5">
+                  <h3 className="text-xl font-semibold text-[#faa307]">{value.title}</h3>
+                  <p className="mt-3 text-gray-300">
+                    {value.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Testimonials Carousel */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 border-t border-white/10 pt-12"
+          >
+            <h2 className="text-3xl font-bold text-white">What Our Clients Say</h2>
+            <div className="mt-8 space-y-6">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="rounded-xl bg-white/5 p-6 backdrop-blur-lg">
+                  <p className="text-gray-300 italic">"{testimonial.quote}"</p>
+                  <p className="mt-4 text-sm font-semibold text-[#faa307]">
+                    {testimonial.name} - {testimonial.role}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Certifications */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 border-t border-white/10 pt-12"
+          >
+            <h2 className="text-3xl font-bold  text-white">Certifications & Partnerships</h2>
+            <div className="mt-8 grid lg:grid-cols-3 grid-cols-1 place-items-center gap-9">
+              {certifications.map((cert, index) => (
+                <img 
+                  key={index}
+                  src={cert.src}
+                  alt={cert.alt}
+                  className="h-52 w-auto rounded-md opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 flex "
+          >
+            <Link to="/signup" className="flex items-center gap-2 mb-10 rounded-full bg-[#faa307] px-5 py-3 text-sm font-semibold text-white transition-all  hover:scale-105">
+              Join Us Today <ChevronRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
+
+     
+    </section>
+  );
+}

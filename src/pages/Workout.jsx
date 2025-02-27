@@ -46,7 +46,7 @@ const SearchBar = ({ value, onChange }) => (
       placeholder="Search workouts..."
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full pl-10 pr-4 py-2 bg-white/10 border text-white border-[#faa307] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#faa307] focus:border-transparent placeholder-gray-500 transition-all"
+      className="w-full pl-10 pr-4 py-[10px] bg-white/10 border text-white border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-[#faa307] focus:border-transparent placeholder-gray-500 transition-all"
     />
   </div>
 );
@@ -77,10 +77,10 @@ const FilterButtons = ({ selectedFilter, onFilterChange }) => {
 
 const WorkoutCard = ({ workout, onClick }) => (
   <div 
-    className="group cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 overflow-hidden bg-white/5 border border-[#faa307]/30 rounded-lg"
+    className="group cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 overflow-hidden bg-white/5 hover:border-[#faa307] border border-white/10 rounded-lg"
     onClick={onClick}
   >
-    <div className="relative h-48">
+    <div className="relative h-50">
       <img
         className="w-full h-full object-cover"
         src={workout.image}
@@ -188,7 +188,7 @@ export default function Workout() {
             </>
           ) : (
             <div className="text-center py-12">
-              <p className="text-xl text-gray-400">No workouts found matching your criteria</p>
+              <p className="text-xl text-gray-400">No workouts found matching your criteria 😥</p>
               <button 
                 onClick={() => {
                   setSearchQuery("");

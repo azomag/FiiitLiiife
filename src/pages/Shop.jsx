@@ -10,7 +10,9 @@ export default function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [showCart, setShowCart] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(''); // Added search query state
   const productsPerPage = 8;
+
 
   const categories = [
     { id: 'all', name: 'All Equipment' },
@@ -180,10 +182,14 @@ export default function Shop() {
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredProducts = selectedCategory === 'all' 
-    ? products.filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
-    : products.filter(product => product.category === selectedCategory && product.price >= priceRange[0] && product.price <= priceRange[1]);
-
+  const filteredProducts = (
+    selectedCategory === 'all' 
+      ? products.filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
+      : products.filter(product => product.category === selectedCategory && product.price >= priceRange[0] && product.price <= priceRange[1])
+  ).filter(product => 
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  ); 
+  
   const addToCart = (product) => {
     setCart(currentCart => {
       const existingItem = currentCart.find(item => item.product.id === product.id);
@@ -212,17 +218,22 @@ export default function Shop() {
   );
 
   return (
-    <div className="min-h-screen pt-40 bg-black text-white relative">
+    <div className="min-h-screen py-40 bg-black text-white relative">
       {/* Navigation Bar */}
-      <nav className="sticky top-0 backdrop-blur-md z-50 border-b border-zinc-800">
+      <nav className=" bg-black z-50 ">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4 w-full md:w-auto">
               <div className="relative flex-1 md:flex-none">
-                <input
+              <input
                   type="text"
                   placeholder="Search products..."
-                  className="w-full md:w-64 pl-10 pr-4 py-2 rounded-lg bg-black/50 border-2 border-zinc-800 focus:border-[#faa307] focus:outline-none text-white placeholder-zinc-500"
+                  className="w-full md:w-[500px] pl-10 pr-4 py-2 rounded-full bg-black/50 border-2 border-zinc-800 focus:border-[#faa307] focus:outline-none text-white placeholder-zinc-500"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setCurrentPage(1);
+                  }}
                 />
                 <Search className="absolute left-3 top-2.5 text-zinc-400 h-5 w-5" />
               </div>
@@ -271,13 +282,43 @@ export default function Shop() {
           <div className="w-full md:w-auto">
             <label className="block text-sm font-medium text-zinc-400 mb-2">Price Range: ${priceRange[0]} - ${priceRange[1]}</label>
             <input
-              type="range"
-              min="0"
-              max="5000"
-              value={priceRange[1]}
-              onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-              className="w-full h-3 bg-white/20 rounded-full appearance-none cursor-pointer"
-            />
+    type="range"
+    min="0"
+    max="5000"
+    value={priceRange[1]}
+    onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
+    className="w-[200px] h-3 rounded-full appearance-none cursor-pointer bg-gradient-to-r from-black/90 to-[#faa307] transition-all"
+    
+  />
+  <style>
+    {`
+      input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border: 3px solid #faa307;
+        border-radius: 50%;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+      }
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: white;
+        border: 3px solid #3b82f6;
+        border-radius: 50%;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+      }
+      input[type="range"]::-moz-range-thumb:hover {
+        transform: scale(1.2);
+      }
+    `}
+  </style>
           </div>
         </div>
 
@@ -315,17 +356,17 @@ export default function Shop() {
                 
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-[#faa307] truncate">{product.name}</h3>
+                    <h3 className="text-xl font-bold text-white truncate">{product.name}</h3>
                     <div className="flex items-center gap-1 text-[#faa307]">
-                      <Star className="h-4 w-4 fill-[#faa307]" />
+                      <Star className="h-4 w-4 fill-[#fae207]" />
                       <span className="text-sm">{product.rating}</span>
                     </div>
                   </div>
                   
-                  <p className="text-zinc-400 text-sm mb-4 line-clamp-2">{product.description}</p>
+                  <p className="text-zinc-500 text-sm mb-4 line-clamp-2">{product.description}</p>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
+                    <span className="text-2xl text-[#faa307] font-medium">${product.price.toFixed(2)}</span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       product.inStock 
                         ? 'bg-green-500/20 text-green-500' 
@@ -336,9 +377,9 @@ export default function Shop() {
                   </div>
 
                   <button 
-                    className={`w-full py-3 rounded-lg font-bold transition-all duration-300 ${
+                    className={`w-full py-3 text-sm rounded-lg font-bold transition-all duration-300 ${
                       product.inStock
-                        ? 'bg-[#faa307] text-black hover:bg-[#faa307]/90'
+                        ? 'border border-[#faa307] text-white hover:text-black hover:bg-[#faa307]/90'
                         : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
                     }`}
                     disabled={!product.inStock}
@@ -411,9 +452,9 @@ export default function Shop() {
                   </span>
                 </div>
                 <button 
-                  className={`w-full py-3 rounded-lg font-bold transition-all duration-300 ${
+                  className={`w-full py-3 text-sm rounded-lg font-bold transition-all duration-300 ${
                     selectedProduct.inStock
-                      ? 'bg-[#faa307] text-black hover:bg-[#faa307]/90'
+                      ? 'border border-[#faa307] text-white hover:text-black hover:bg-[#faa307]/90'
                       : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
                   }`}
                   disabled={!selectedProduct.inStock}
@@ -432,7 +473,7 @@ export default function Shop() {
 
       {/* Shopping Cart Sidebar */}
       {showCart && (
-        <div className="fixed inset-0 mt-20 bg-black/50 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999]">
           <div className="absolute right-0 top-0 h-full w-full md:w-96 bg-zinc-900/95 border-l border-zinc-800 p-6 transform transition-transform">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-[#faa307]">Your Cart</h2>

@@ -26,17 +26,10 @@ export default function Home() {
     },
   };
 
-  const stats = [
-    { value: '10k+', label: 'Active Members' },
-    { value: '500+', label: 'Workout Programs' },
-    { value: '24/7', label: 'Expert Support' },
-    { value: '95%', label: 'Success Rate' },
-  ];
-
   return (
-    <section className="relative lg:pt-0  min-h-screen w-full overflow-hidden  pt-24">
-      {/* Background Image with Optimized Loading */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative min-h-screen bg-black w-full overflow-hidden pt-10 lg:pt-0">
+      {/* Background Image - Visible on all devices */}
+      <div className="absolute lg:hidden flex inset-0 z-0">
         <div className="relative h-full w-full">
           <img 
             src={img}
@@ -49,6 +42,22 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Background Video - Only visible on desktop (right 40%) */}
+      <div className="absolute right-0 top-0 z-0 hidden h-[120vh] w-[45%] overflow-hidden lg:block">
+        <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Overlay to darken video */}
+        <video
+          className="h-full  w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/img/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-black  via-transparent to-transparent"></div>
+      </div>
+
       {/* Main Content Container */}
       <motion.div 
         className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8"
@@ -56,7 +65,7 @@ export default function Home() {
         animate="visible"
         variants={containerVariants}
       >
-        <div className="max-w-2xl">
+        <div className="max-w-xl lg:max-w-2xl">
           {/* Pre-heading */}
           <motion.div 
             variants={itemVariants}
@@ -82,7 +91,7 @@ export default function Home() {
           {/* Subheading */}
           <motion.p 
             variants={itemVariants}
-            className="mt-6 text-sm text-gray-300 sm:text-md"
+            className="mt-6 text-lg text-gray-300"
           >
             Join thousands who have transformed their lives through personalized workouts,
             expert coaching, and an inspiring community that supports your every step.
@@ -101,30 +110,13 @@ export default function Home() {
             </button>
             <button 
               className="group flex w-full items-center justify-center gap-2 rounded-lg border-2 border-white/20 bg-white/10 px-8 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 sm:w-auto"
-              onClick={() => window.open('')}
             >
               Watch Demo
               <PlayCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
             </button>
           </motion.div>
 
-          {/* Stats Grid */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4"
-          >
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="group  rounded-3xl flex flex-col justify-center items-center bg-white/10 py-6 backdrop-blur-xl transition-all hover:bg-[#faa307]/10"
-              >
-                <div className="text-3xl font-bold text-[#faa307] sm:text-3xl">{stat.value}</div>
-                <div className="mt-1 text-xs text-gray-400 transition-colors group-hover:text-gray-300">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
+          
         </div>
       </motion.div>
     </section>

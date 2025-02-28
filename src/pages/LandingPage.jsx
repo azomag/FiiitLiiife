@@ -3,7 +3,7 @@ import Home from './Home';
 import Planing from '../Sections/Planing';
 import Features from '../Sections/Features';
 import Application from '../Sections/Application';
-export default function index() {
+export default function LandingPage() {
   return (
     <div className=''>
       <div>

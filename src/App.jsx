@@ -14,14 +14,14 @@ import ChatBot from './chat/Chatbot';
 import About from './pages/About';
 import Shop from './pages/Shop';
 import Contact from './pages/Contact';
-import Index from './pages/index';
+import LandingPage from './pages/LandingPage';
 function App() {
   return ( 
     <Router>
       <div className='app'>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<LandingPage />} />
           
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

@@ -15,6 +15,7 @@ import About from './pages/About';
 import Shop from './pages/Shop';
 import Contact from './pages/Contact';
 import LandingPage from './pages/LandingPage';
+import Nutrition from './pages/Nutrition'; // Import Nutrition component
 function App() {
   return ( 
     <Router>
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/programmes" element={<Programmes />} />
+          <Route path="/nutrition" element={<Nutrition />} />
           <Route path="/program/:id" element={<DetailsProgrammes />} />
           <Route path="/workout" element={<Workout />} />
           <Route path="/WorkoutDetails/:id" element={<WorkoutDetails />} /> {/* ✅ Fix added */}

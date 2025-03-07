@@ -865,16 +865,21 @@ const DetailsProgrammes = () => {
               )}
             </div>
 
-            <div className="space-y-6 text-center">
+            <div className="space-y-6 ">
               <h1 className="text-3xl font-bold text-[#faa307]">{program.titleGuid}</h1>
+              <div className="lg:flex lg:flex-row flex-col ">
               <img 
                 src={program.programImg} 
                 alt="workout" 
-                className="mx-auto lg:w-[50%] w-full rounded-2xl shadow-lg"
+                className="mx-auto lg:w-[50%] w-full rounded shadow-lg"
               />
-              <p className="text-gray-300 bg-white/5 p-6 rounded-xl leading-relaxed max-w-4xl mx-auto">
+
+<p className="text-gray-400  p-6 rounded-xl leading-relaxed max-w-4xl mx-auto">
                 {program.guid}
               </p>
+              </div>
+              
+              
             </div>
           </div>
         </div>

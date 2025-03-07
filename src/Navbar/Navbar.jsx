@@ -8,7 +8,8 @@ import {
   ChevronDown,
   NotepadText,
   Dumbbell,
-  User
+  User,
+  Beef 
 } from "lucide-react";
 
 const NAVIGATION_ITEMS = [
@@ -18,6 +19,7 @@ const NAVIGATION_ITEMS = [
     dropdown: [
       { label: "Programmes", path: "/programmes", icon: <NotepadText size={20} /> },
       { label: "Workouts", path: "/workout", icon: <Dumbbell size={20} /> },
+      { label: "Nutrition", path: "/Nutrition", icon: <Beef size={20} /> },
       { label: "Personal Training", path: "/PersonalTrainer", icon: <User size={20} /> }
     ]
   },
@@ -94,8 +96,8 @@ const NavLinks = ({ isMobile = false, onNavigate, activeDropdown, setActiveDropd
                 className={`
                   ${isMobile 
                     ? "relative w-full pl-4 mt-2" 
-                    : `absolute top-full left-0 min-w-[250px] bg-[#1a1a1a] shadow-lg rounded-lg mt-2
-                       transition-all duration-200 origin-top transform border border-gray-700
+                    : `absolute top-full left-0 min-w-[250px] bg-[#000000] shadow-lg rounded-lg mt-5
+                       transition-all duration-200 origin-top transform border border-white/10
                        ${activeDropdown === item.label ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`
                   }
                   z-20 p-2
@@ -109,7 +111,7 @@ const NavLinks = ({ isMobile = false, onNavigate, activeDropdown, setActiveDropd
                         to={subItem.path} 
                         className={({ isActive }) => 
                           `flex items-center gap-3 px-4 py-3 rounded-md transition-colors
-                          ${isActive ? 'bg-[#faa307]/10 text-[#faa307]' : 'hover:bg-gray-800 text-white'}`
+                          ${isActive ? 'bg-[#faa307]/10 text-[#faa307]' : 'hover:bg-white/10 text-white'}`
                         }
                         onClick={() => {
                           isMobile && onNavigate?.();

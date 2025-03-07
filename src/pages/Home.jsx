@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       {/* Background Video - Only visible on desktop (right 40%) */}
-      <div className="absolute right-0 top-0 z-0 hidden h-[120vh] w-[45%] overflow-hidden lg:block">
+      <div className="absolute right-0 top-0 z-0 hidden h-[120vh] w-[60%] overflow-hidden lg:block">
         <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Overlay to darken video */}
         <video
           className="h-full  w-full object-cover"
@@ -55,7 +55,7 @@ export default function Home() {
           <source src="/img/video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 z-20 bg-gradient-to-r from-black  via-transparent to-transparent"></div>
+        <div className="absolute inset-0 rotat z-20 bg-gradient-to-r from-black  via-transparent to-transparent"></div>
       </div>
 
       {/* Main Content Container */}

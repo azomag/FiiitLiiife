@@ -27,6 +27,11 @@ const SignupPage = () => {
     if (!formData.password) newErrors.password = 'Password is required';
     else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
     if (formData.confirmPassword !== formData.password) newErrors.confirmPassword = 'Passwords do not match';
+    // Check for duplicate email
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.some(u => u.email === formData.email)) {
+      newErrors.email = 'Email already exists';
+    }
     return newErrors;
   };
 
@@ -34,8 +39,16 @@ const SignupPage = () => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      // Handle form submission - API call would go here
-      console.log('Form submitted successfully', formData);
+      // Save user to localStorage
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      users.push({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
+      });
+      localStorage.setItem('users', JSON.stringify(users));
+      // Optionally, auto-login after signup:
+      // localStorage.setItem('currentUser', JSON.stringify({ name: formData.name, email: formData.email }));
       // Reset form after submission
       setFormData({
         name: '',
@@ -44,6 +57,9 @@ const SignupPage = () => {
         confirmPassword: '',
       });
       setErrors({});
+      alert('Account created! You can now log in.');
+      // Optionally, redirect to login page
+      // window.location.href = '/login';
     } else {
       setErrors(validationErrors);
     }

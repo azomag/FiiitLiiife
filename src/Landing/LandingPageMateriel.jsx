@@ -12,7 +12,7 @@ export default function LandingPageShop() {
   const promoImages = [
     "https://img.freepik.com/photos-gratuite/equipement-entrainement-theme-decorations-noel_23-2149564366.jpg?t=st=1741366753~exp=1741370353~hmac=2769e9d314eceba7959a543391ee6bcbaaed9a8e969177639cfcdcf4ee253f99&w=1380",
     "https://img.freepik.com/photos-gratuite/legumes-frais-halteres-fond-bois_23-2147882039.jpg?t=st=1741366860~exp=1741370460~hmac=150481bca0ab3dd448b19a5dfe35d2b32554c781b8f7f806d36b8effde6be1f0&w=1060",
-    "https://img.freepik.com/photos-gratuite/gens-qui-s-entrainent-pour-athletisme_23-2151077706.jpg?t=st=1741366908~exp=1741370508~hmac=020697cb92eba98f634511f4fa0170c1b9d6124bd3305e43b32d6da478328d94&w=1060",
+    "https://img.freepik.com/free-photo/people-gym-talking-making-exercise-plans_23-2149175367.jpg?t=st=1741389319~exp=1741392919~hmac=3b95a31caa1839ca1848f3d7c084095098dcf7b5242cd838a8d4473ea8d2d76f&w=1060",
     
   ];
   
@@ -91,7 +91,7 @@ export default function LandingPageShop() {
   // };
 
   return (
-    <div className="relative lg:grid lg:place-items-center  pt-20 h-screen bg-black">
+    <div className="relative lg:grid lg:place-items-center  pt-10 h-screen bg-black">
       {/* Main swiper container */}
       <div className="relative lg:h-[500px] lg:w-[80%] lg:rounded-2xl  h-full overflow-hidden">
         {/* Slides */}
@@ -108,7 +108,7 @@ export default function LandingPageShop() {
               <img 
                 src={image} 
                 alt={`Fitness Promo ${index + 1}`}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-left lg:object-center"
               />
               
               {/* Content overlay with animation */}
@@ -124,7 +124,7 @@ export default function LandingPageShop() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
-                      to="/shop" 
+                      to="/nutrition" 
                       className="bg-yellow-600 hover:bg-yellow-500 text-white py-4 px-8 rounded-full text-sm font-bold transition-all duration-300 text-center transform "
                     >
                       {slides[index]?.ctaText || "SHOP NOW"}

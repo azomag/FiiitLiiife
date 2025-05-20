@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { 
   Home, 
   Menu, 
@@ -9,22 +9,24 @@ import {
   NotepadText,
   Dumbbell,
   User,
-  Beef 
+  Beef,
+  LogOut
 } from "lucide-react";
 
 const NAVIGATION_ITEMS = [
   { 
-    label: "Explore", 
+    label: "Pages", 
     icon: <ChevronDown size={16} className="transition-transform" />,
     dropdown: [
       { label: "Programmes", path: "/programmes", icon: <NotepadText size={20} /> },
       { label: "Workouts", path: "/workout", icon: <Dumbbell size={20} /> },
-      { label: "Nutrition", path: "/Nutrition", icon: <Beef size={20} /> },
+      { label: "Equipment Shop", path: "/shop", icon: <Beef size={20} /> },
+      { label: "Nutrition Shop", path: "/Nutrition", icon: <Beef size={20} /> },
       { label: "Personal Training", path: "/PersonalTrainer", icon: <User size={20} /> }
     ]
   },
   { label: "About", path: "/about" },
-  { label: "Shop", path: "/shop" },
+  { label: "Info", path: "/Info" },
   { label: "Contact", path: "/contact" }
 ];
 
@@ -148,38 +150,68 @@ const NavLinks = ({ isMobile = false, onNavigate, activeDropdown, setActiveDropd
   );
 };
 
-const AuthButtons = ({ isMobile = false, onNavigate }) => (
-  <div className={`${isMobile ? "mt-6 space-y-4 text-center" : "hidden md:flex items-center space-x-4"}`}>
-    <Link 
-      to="/login" 
-      className={`
-        ${isMobile ? "inline-flex items-center justify-center w-full" : ""}
-        px-5 py-2 text-sm border border-white text-white rounded-full 
-        hover:bg-white hover:text-black hover:scale-105 transition-all duration-300
-      `}
-      onClick={onNavigate}
-    >
-      Login
-    </Link>
-    <Link 
-      to="/signup" 
-      className={`
-        ${isMobile ? "inline-flex items-center justify-center w-full" : ""}
-        px-6 py-2 text-sm bg-[#faa307] text-black rounded-full 
-        hover:bg-[#ffc42d] hover:scale-105 transition-all duration-300
-      `}
-      onClick={onNavigate}
-    >
-      Sign Up
-    </Link>
-  </div>
-);
+const AuthButtons = ({ isMobile = false, onNavigate, user, onLogout }) => {
+  if (user) {
+    // Show profile dropdown or just name and logout
+    return (
+      <div className={`${isMobile ? "mt-6 space-y-4 text-center" : "hidden md:flex items-center space-x-4"}`}>
+        <div className="relative group">
+          <button className="flex items-center gap-2 px-5 py-2 text-sm border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300">
+            <User size={18} className="mr-1" />
+            {user.name}
+            <ChevronDown size={16} />
+          </button>
+          <div className="absolute right-0 mt-2 min-w-[150px] bg-black border border-white/10 rounded-lg shadow-lg z-50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-all duration-200">
+            <div className="flex flex-col">
+              <span className="px-4 py-2 text-sm text-gray-300">{user.email}</span>
+              <button
+                onClick={onLogout}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors"
+              >
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${isMobile ? "mt-6 space-y-4 text-center" : "hidden md:flex items-center space-x-4"}`}>
+      <Link 
+        to="/login" 
+        className={`
+          ${isMobile ? "inline-flex items-center justify-center w-full" : ""}
+          px-5 py-2 text-sm border border-white text-white rounded-full 
+          hover:bg-white hover:text-black hover:scale-105 transition-all duration-300
+        `}
+        onClick={onNavigate}
+      >
+        Login
+      </Link>
+      <Link 
+        to="/signup" 
+        className={`
+          ${isMobile ? "inline-flex items-center justify-center w-full" : ""}
+          px-6 py-2 text-sm bg-[#faa307] text-black rounded-full 
+          hover:bg-[#ffc42d] hover:scale-105 transition-all duration-300
+        `}
+        onClick={onNavigate}
+      >
+        Sign Up
+      </Link>
+    </div>
+  );
+};
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [user, setUser] = useState(null);
   const mobileMenuRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -209,6 +241,33 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    // Check for logged in user on mount
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  // Listen for login/logout changes (optional: for multi-tab support)
+  useEffect(() => {
+    const handleStorage = () => {
+      const currentUser = localStorage.getItem('currentUser');
+      setUser(currentUser ? JSON.parse(currentUser) : null);
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('currentUser');
+    setUser(null);
+    setActiveDropdown(null);
+    navigate('/'); // redirect to home
+  };
+
   return (
     <nav 
       className={`
@@ -234,7 +293,7 @@ export default function Navbar() {
           />
         </div>
 
-        <AuthButtons />
+        <AuthButtons user={user} onLogout={handleLogout} />
 
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)} 
@@ -278,6 +337,11 @@ export default function Navbar() {
           
           <AuthButtons 
             isMobile={true} 
+            user={user}
+            onLogout={() => {
+              handleLogout();
+              setIsMenuOpen(false);
+            }} 
             onNavigate={() => setIsMenuOpen(false)} 
           />
         </div>

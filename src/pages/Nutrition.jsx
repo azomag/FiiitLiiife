@@ -284,7 +284,7 @@ export default function Shop() {
             </button>
           ))}
           <div className="w-full md:w-auto">
-            <label className="block text-sm font-medium text-zinc-400 mb-2">Price Range: ${priceRange[0]} - ${priceRange[1]}</label>
+            <label className="block text-sm font-medium text-zinc-400 mb-2">Price Range: MAD {priceRange[0]} - MAD {priceRange[1]}</label>
             <input
     type="range"
     min="200"

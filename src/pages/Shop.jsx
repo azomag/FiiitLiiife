@@ -4,7 +4,7 @@ import LandingPageMateriel from '../Landing/LandingPageMateriel';
 export default function Shop() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [priceRange, setPriceRange] = useState([0, 9000]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ export default function Shop() {
     {
         id: 1,
         name: 'Adjustable Dumbbell Set',
-        price: 299.99,
+        price: 2990.99,
         category: 'weights',
         image: 'https://img.freepik.com/free-photo/view-rows-dumbbells_1339-4865.jpg?t=st=1740648376~exp=1740651976~hmac=4ffe39ac695603e9ae87ea25f59be0f91a260e4342413c2a367b7095160edf8b&w=1060',
         description: 'Adjustable weights from 5-52.5 lbs',
@@ -46,7 +46,7 @@ export default function Shop() {
     {
         id: 3,
         name: 'Olympic Barbell',
-        price: 199.99,
+        price: 1990.99,
         category: 'weights',
         image: 'https://img.freepik.com/free-vector/sport-metal-barbell-rack_1284-58534.jpg',
         description: '20kg Olympic barbell with knurling',
@@ -56,7 +56,7 @@ export default function Shop() {
     {
         id: 4,
         name: 'Cable Machine',
-        price: 2499.99,
+        price: 6499.99,
         category: 'machines',
         image: 'https://img.freepik.com/free-photo/woman-training-gym_23-2148024361.jpg?t=st=1740649383~exp=1740652983~hmac=0f764a1a1ce918667f48710b9c99a4539d9e20530aa6733cb29962131beebabb&w=360',
         description: 'Multi-functional cable machine for full body workout',
@@ -66,7 +66,7 @@ export default function Shop() {
     {
         id: 5,
         name: 'Resistance Bands Set',
-        price: 29.99,
+        price: 129.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/handsome-man-training-summer-park_1157-25770.jpg?t=st=1740648715~exp=1740652315~hmac=8875316d90e8d9163717ed705b5a0340888179a0509214216dce1b4afdb839b4&w=360',
         description: 'Set of 5 resistance bands with different strengths',
@@ -76,7 +76,7 @@ export default function Shop() {
     {
         id: 6,
         name: 'Foam Roller',
-        price: 24.99,
+        price: 124.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/pleased-unshaven-male-holds-rolled-fitness-mat-satisfied-after-yoga-class_273609-30319.jpg?t=st=1740648437~exp=1740652037~hmac=ee96760ec9eca89f3c59f8a518149433f5e83c03f076db7c377f285de612762d&w=1060',
         description: 'High-density foam roller for muscle recovery',
@@ -96,7 +96,7 @@ export default function Shop() {
     {
         id: 8,
         name: 'Rowing Machine',
-        price: 1299.99,
+        price: 3299.99,
         category: 'cardio',
         image: 'https://img.freepik.com/free-photo/man-using-press-machine-fitness-club_155003-2294.jpg?t=st=1740649292~exp=1740652892~hmac=d250c1c8095886b99eff52b4ebfac9b5526dd05dc6137415ee1f12279991cc41&w=1060',
         description: 'Smooth and quiet magnetic resistance rowing machine',
@@ -106,7 +106,7 @@ export default function Shop() {
     {
         id: 9,
         name: 'Medicine Ball Set',
-        price: 89.99,
+        price: 289.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/attractive-fit-man-working-out-indoors-with-exercise-ball_23-2149175366.jpg?t=st=1740649489~exp=1740653089~hmac=cb0d2caad61657378da3d8e8a1a52cf3e4dd91fa4fdcc2abbf966d5e572bc482&w=1060',
         description: 'Set of 3 medicine balls (5lb, 10lb, 15lb)',
@@ -116,7 +116,7 @@ export default function Shop() {
     {
         id: 10,
         name: 'Pull-Up Bar',
-        price: 59.99,
+        price: 459.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/back-view-muscular-topless-male-athlete-showing-calisthenic-moves-hanging-pullbar_346278-1570.jpg?t=st=1740649579~exp=1740653179~hmac=a4646c04087be62c484eb259895ef7e5bd5e087a3c9a05d1af55269212f4f7d3&w=1060',
         description: 'Doorway pull-up bar with adjustable grip positions',
@@ -126,7 +126,7 @@ export default function Shop() {
     {
         id: 11,
         name: 'Battle Ropes',
-        price: 129.99,
+        price: 329.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/ropes-caucasian-professional-sportsman-training-white-studio_155003-30091.jpg?t=st=1740649672~exp=1740653272~hmac=e92fa9c86d80e8d784fbc124a77c23f36efdbcbcc88e52b215a1c80963999368&w=1060',
         description: 'Heavy-duty battle ropes for strength training',
@@ -136,7 +136,7 @@ export default function Shop() {
     {
         id: 12,
         name: 'Spin Bike',
-        price: 899.99,
+        price: 999.99,
         category: 'cardio',
         image: 'https://img.freepik.com/free-photo/beautiful-sporty-young-woman-doing-exercise-gym_1301-6609.jpg?t=st=1740649831~exp=1740653431~hmac=a2055f5aec807f25a689153596fd3b6f8c1f9cbc29e91ea102a98f7b62e768b3&w=360',
         description: 'Indoor cycling bike with adjustable resistance',
@@ -146,7 +146,7 @@ export default function Shop() {
     {
         id: 13,
         name: 'Weight Bench',
-        price: 199.99,
+        price: 1390.99,
         category: 'weights',
         image: 'https://img.freepik.com/free-photo/3d-gym-equipment_23-2151114151.jpg?t=st=1740649877~exp=1740653477~hmac=a37fab1c76d52907313e3f6648603b89010a9984f7112a602b6679c38cc61ced&w=1060',
         description: 'Adjustable weight bench for strength training',
@@ -156,7 +156,7 @@ export default function Shop() {
     {
         id: 14,
         name: 'Jump Rope',
-        price: 19.99,
+        price: 69.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/young-female-exercising-with-jumping-rope_23-2149127323.jpg?t=st=1740649745~exp=1740653345~hmac=3dca53068effe7c76c9968d637f9a268edd8e2aae0b027d10af58e5319b7e5d0&w=360',
         description: 'Adjustable speed jump rope for cardio workouts',
@@ -166,7 +166,7 @@ export default function Shop() {
     {
         id: 15,
         name: 'Yoga Mat',
-        price: 39.99,
+        price: 89.99,
         category: 'accessories',
         image: 'https://img.freepik.com/free-photo/woman-with-yoga-mat-home_1303-28729.jpg?t=st=1740650091~exp=1740653691~hmac=838c55563661d52ca94c6f485f415068f5e0e62d8a5d377bc8ee5cddbbe923d1&w=1060',
         description: 'Non-slip yoga mat for home and gym workouts',
@@ -223,7 +223,7 @@ export default function Shop() {
         <LandingPageMateriel />
       </div>
       {/* Navigation Bar */}
-      <nav className=" bg-black z-50 ">
+      <nav className=" bg-black z-50 pt-20 ">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4 w-full md:w-auto">
@@ -283,11 +283,11 @@ export default function Shop() {
             </button>
           ))}
           <div className="w-full md:w-auto">
-            <label className="block text-sm font-medium text-zinc-400 mb-2">Price Range: ${priceRange[0]} - ${priceRange[1]}</label>
+            <label className="block text-sm font-medium text-zinc-400 mb-2">Price Range: MAD {priceRange[0]} - MAD {priceRange[1]}</label>
             <input
     type="range"
     min="0"
-    max="5000"
+    max="9000"
     value={priceRange[1]}
     onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
     className="w-[200px] h-3 rounded-full appearance-none cursor-pointer bg-gradient-to-r from-black/90 to-[#faa307] transition-all"
@@ -369,7 +369,7 @@ export default function Shop() {
                   <p className="text-zinc-500 text-sm mb-4 line-clamp-2">{product.description}</p>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl text-[#faa307] font-medium">${product.price.toFixed(2)}</span>
+                    <span className="text-2xl text-[#faa307] font-medium">MAD {product.price.toFixed(2)}</span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       product.inStock 
                         ? 'bg-green-500/20 text-green-500' 
@@ -445,7 +445,7 @@ export default function Shop() {
                 <h2 className="text-3xl font-bold text-[#faa307] mb-4">{selectedProduct.name}</h2>
                 <p className="text-zinc-400 mb-4">{selectedProduct.description}</p>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold">${selectedProduct.price.toFixed(2)}</span>
+                  <span className="text-2xl font-bold"> MAD {selectedProduct.price.toFixed(2)}</span>
                   <span className={`text-sm px-2 py-1 rounded-full ${
                     selectedProduct.inStock 
                       ? 'bg-green-500/20 text-green-500' 

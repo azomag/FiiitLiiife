@@ -91,7 +91,7 @@ export default function LandingPageShop() {
   // };
 
   return (
-    <div className="relative lg:grid lg:place-items-center  pt-20 h-screen bg-black">
+    <div className="relative lg:grid lg:place-items-center  pt-10 h-screen bg-black">
       {/* Main swiper container */}
       <div className="relative lg:h-[500px] lg:w-[80%] lg:rounded-2xl  h-full overflow-hidden">
         {/* Slides */}

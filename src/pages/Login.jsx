@@ -29,14 +29,23 @@ const LoginPage = () => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      // Handle form submission - API call would go here
-      console.log('Login form submitted successfully', formData);
-      // Reset form after submission
-      setFormData({
-        email: '',
-        password: '',
-      });
-      setErrors({});
+      // Check credentials in localStorage
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(
+        u => u.email === formData.email && u.password === formData.password
+      );
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify({ name: user.name, email: user.email }));
+        setFormData({
+          email: '',
+          password: '',
+        });
+        setErrors({});
+        // Optionally, redirect to home or profile
+        window.location.href = '/';
+      } else {
+        setErrors({ password: 'Invalid email or password' });
+      }
     } else {
       setErrors(validationErrors);
     }

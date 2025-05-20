@@ -10,7 +10,9 @@ import {
   Dumbbell,
   User,
   Beef,
-  LogOut
+  LogOut,
+  UserCircle,
+  Mail
 } from "lucide-react";
 
 const NAVIGATION_ITEMS = [
@@ -152,18 +154,28 @@ const NavLinks = ({ isMobile = false, onNavigate, activeDropdown, setActiveDropd
 
 const AuthButtons = ({ isMobile = false, onNavigate, user, onLogout }) => {
   if (user) {
-    // Show profile dropdown or just name and logout
+    // Enhanced profile dropdown with avatar, name, email, and icons
     return (
       <div className={`${isMobile ? "mt-6 space-y-4 text-center" : "hidden md:flex items-center space-x-4"}`}>
         <div className="relative group">
-          <button className="flex items-center gap-2 px-5 py-2 text-sm border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300">
-            <User size={18} className="mr-1" />
-            {user.name}
+          <button
+            className="flex items-center gap-2 px-5 py-2 text-sm border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 focus:outline-none"
+            tabIndex={0}
+          >
+            <UserCircle size={24} className="text-[#faa307] bg-white rounded-full p-1" />
+            <span className="font-semibold">{user.name}</span>
             <ChevronDown size={16} />
           </button>
-          <div className="absolute right-0 mt-2 min-w-[150px] bg-black border border-white/10 rounded-lg shadow-lg z-50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-all duration-200">
-            <div className="flex flex-col">
-              <span className="px-4 py-2 text-sm text-gray-300">{user.email}</span>
+          <div className="absolute right-0 mt-2 min-w-[220px] bg-black border border-white/10 rounded-xl shadow-lg z-50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-all duration-200">
+            <div className="flex flex-col py-2">
+              <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10">
+                <UserCircle size={20} className="text-[#faa307]" />
+                <span className="font-semibold text-white">{user.name}</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10">
+                <Mail size={18} className="text-[#faa307]" />
+                <span className="text-gray-400 text-sm truncate">{user.email}</span>
+              </div>
               <button
                 onClick={onLogout}
                 className="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors"

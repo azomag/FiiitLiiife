@@ -6,7 +6,11 @@ export default function Shop() {
   const [showFilters, setShowFilters] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    // Initialize cart from localStorage
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [showCart, setShowCart] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -217,6 +221,21 @@ export default function Shop() {
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
   );
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  // Optional: Sync cart across tabs
+  useEffect(() => {
+    const syncCart = () => {
+      const storedCart = localStorage.getItem('cart');
+      setCart(storedCart ? JSON.parse(storedCart) : []);
+    };
+    window.addEventListener('storage', syncCart);
+    return () => window.removeEventListener('storage', syncCart);
+  }, []);
 
   return (
     <div className="min-h-screen pb-40 bg-black text-white relative">

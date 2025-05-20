@@ -16,6 +16,7 @@ import Shop from './pages/Shop';
 import Contact from './pages/Contact';
 import LandingPage from './pages/LandingPage';
 import Nutrition from './pages/Nutrition'; // Import Nutrition component
+import Info from './pages/Info';
 function App() {
   return ( 
     <Router>
@@ -26,6 +27,7 @@ function App() {
           
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/info" element={<Info />} />
           <Route path="/programmes" element={<Programmes />} />
           <Route path="/nutrition" element={<Nutrition />} />
           <Route path="/program/:id" element={<DetailsProgrammes />} />
